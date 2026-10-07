@@ -1,0 +1,12 @@
+/* variables.css — design tokens (colores, radios, tipografías) */
+:root{
+  --bg-0:#080B14; --bg-1:#0F1424; --bg-2:#161C33;
+  --line:rgba(232,226,214,0.12); --line-strong:rgba(232,226,214,0.22);
+  --gold:#E8A33D; --gold-dim:rgba(232,163,61,0.14);
+  --teal:#2FBFAE; --teal-dim:rgba(47,191,174,0.14);
+  --rust:#D1543F; --danger:#FF8A75;
+  --text-0:#F3EFE4; --text-1:#B9B7C4;
+  --text-2:#9C9AAD;           /* subido de #7C7A8C para cumplir contraste AA */
+  --radius:16px; --serif-voice:'Space Grotesk', sans-serif;
+  --maxw:1120px;
+}

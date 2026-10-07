@@ -1,0 +1,13 @@
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--bg-0); color:var(--text-0); font-family:'Inter', system-ui, sans-serif; line-height:1.6; overflow-x:hidden;}
+  h1,h2,h3{font-family:var(--serif-voice); font-weight:700; margin:0; letter-spacing:-0.01em;}
+  p{margin:0;} a{color:inherit; text-decoration:none;} img,svg{max-width:100%; display:block;}
+  input,select,button{font-family:'Inter',sans-serif;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
+  .section{padding:70px 0 96px; position:relative; min-height:200px; display:none;}
+  .section.active{display:block;}
+  .bg-lines{position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:radial-gradient(circle at 15% 20%, rgba(232,163,61,0.05), transparent 40%),
+    radial-gradient(circle at 85% 60%, rgba(47,191,174,0.06), transparent 45%);}
+  .content-layer{position:relative; z-index:1;}
