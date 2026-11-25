@@ -1,0 +1,42 @@
+/* panel.css — panel de pedidos y gestión */
+[hidden] { display: none !important; }
+.panel-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.stat-card { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; }
+.stat-card strong { display: block; font-family: var(--serif-voice); font-size: 26px; color: var(--gold); }
+.stat-card span { font-size: 13px; color: var(--text-1); }
+.panel-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px; }
+.panel-bar select { background: var(--bg-2); color: var(--text-0); border: 1px solid var(--line-strong); border-radius: 10px; padding: 7px 10px; font: inherit; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-1); }
+.panel-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 640px; }
+.panel-table th, .panel-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.panel-table th { color: var(--text-1); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+.panel-table tr:last-child td { border-bottom: 0; }
+.panel-table small { color: var(--text-2); display: block; }
+.st-badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; background: var(--gold-dim); color: var(--gold); }
+.st-badge.confirmado, .st-badge.enviado { background: var(--teal-dim); color: var(--teal); }
+.st-badge.entregado { background: rgba(120, 200, 120, .16); color: #8fd68f; }
+.st-badge.cancelado { background: rgba(209, 84, 63, .16); color: var(--danger); }
+.panel-table select { background: var(--bg-2); color: var(--text-0); border: 1px solid var(--line-strong); border-radius: 8px; padding: 5px 8px; font: inherit; }
+.empty-msg { padding: 20px; color: var(--text-1); }
+
+/* ---- Dashboard ---- */
+.stat-card { position: relative; }
+.stat-card em { font-style: normal; font-size: 18px; position: absolute; top: 12px; right: 14px; opacity: .8; }
+.dash-title { margin: 22px 0 10px; font-size: 16px; color: var(--text-1); }
+.dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-bottom: 8px; }
+.chart-card { background: var(--bg-1); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; min-width: 0; }
+.chart-card:first-child { grid-column: 1 / -1; }
+.chart-card h4 { margin: 0 0 10px; font-size: 14px; color: var(--text-0); }
+.chart-svg { width: 100%; height: auto; display: block; }
+.chart-svg .bar { fill: var(--gold); }
+.chart-svg .bar:hover { fill: var(--teal); }
+.chart-svg .axis { fill: var(--text-2); font-size: 10px; }
+.hbars { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.hbar-head { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; color: var(--text-1); margin-bottom: 4px; }
+.hbar-head strong { color: var(--text-0); }
+.hbar-track { height: 8px; border-radius: 999px; background: var(--bg-2); overflow: hidden; }
+.hbar-fill { height: 100%; border-radius: 999px; background: var(--gold); transition: width .4s ease; }
+.hbar-fill.confirmado, .hbar-fill.enviado { background: var(--teal); }
+.hbar-fill.entregado { background: #8fd68f; }
+.hbar-fill.cancelado { background: var(--danger); }
+@media (prefers-reduced-motion: reduce) { .hbar-fill { transition: none; } }

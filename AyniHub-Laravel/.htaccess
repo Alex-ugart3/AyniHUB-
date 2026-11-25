@@ -1,0 +1,5 @@
+# Permite abrir el proyecto desde http://localhost/AyniHub-Laravel con XAMPP (Apache)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

@@ -1,0 +1,2 @@
+<?php
+// Artisan console routes.

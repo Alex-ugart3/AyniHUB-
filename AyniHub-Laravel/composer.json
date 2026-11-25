@@ -1,0 +1,12 @@
+{
+  "name": "aynihub/aynihub-laravel",
+  "type": "project",
+  "description": "AyniHub - plataforma de comercio justo para productores de Chinchero, Cusco",
+  "require": {"php": "^8.2", "laravel/framework": "^11.0|^12.0", "laravel/tinker": "^2.9"},
+  "require-dev": {"fakerphp/faker": "^1.23", "mockery/mockery": "^1.6", "phpunit/phpunit": "^11.0"},
+  "autoload": {"psr-4": {"App\\": "app/", "Database\\Factories\\": "database/factories/", "Database\\Seeders\\": "database/seeders/"}},
+  "autoload-dev": {"psr-4": {"Tests\\": "tests/"}},
+  "scripts": {"post-autoload-dump": ["Illuminate\\Foundation\\ComposerScripts::postAutoloadDump", "@php artisan package:discover --ansi"], "post-create-project-cmd": ["@php artisan key:generate --ansi"]},
+  "config": {"optimize-autoloader": true, "preferred-install": "dist", "sort-packages": true, "allow-plugins": {"php-http/discovery": true}},
+  "minimum-stability": "stable", "prefer-stable": true
+}

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="base-url" content="{{ rtrim(url('/'), '/') }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ayni Hub: plataforma de comercio justo para productores y tejedoras de Chinchero, Cusco.">
+<title>Ayni Hub — Chinchero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/variables.css') }}">
+<link rel="stylesheet" href="{{ asset('css/base.css') }}">
+<link rel="stylesheet" href="{{ asset('css/estructura.css') }}">
+<link rel="stylesheet" href="{{ asset('css/componentes.css') }}">
+<link rel="stylesheet" href="{{ asset('css/formularios.css') }}">
+<link rel="stylesheet" href="{{ asset('css/adaptable.css') }}">
+<link rel="stylesheet" href="{{ asset('css/panel.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/tema.css') }}">
+</head>
+<body>
+<a class="skip-link" href="#contenido" data-i18n="skip">Saltar al contenido</a>
+<div class="bg-lines" aria-hidden="true"></div>
+
+<header class="site-header">
+  <nav class="nav-inner" aria-label="Principal">
+    <a class="logo" href="#Inicio"><span class="logo-dot" aria-hidden="true"></span><span data-i18n="brand">Ayni Hub</span></a>
+    <button type="button" class="btn btn-ghost menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" data-i18n="menu">Menú</button>
+    <div class="nav-links" id="navLinks"><a href="#Inicio" data-route="Inicio" data-i18n="navInicio">Inicio</a><a href="#Entrevista" data-route="Entrevista" data-i18n="navEntrevista">Entrevista y paisaje</a><a href="#ComoFunciona" data-route="ComoFunciona" data-i18n="nav2">Cómo funciona</a><a href="#Catalogo" data-route="Catalogo" data-i18n="nav3">Catálogo</a><a href="#Panel" data-route="Panel" id="navPanel" {{ auth()->check() ? '' : 'hidden' }}>Mis pedidos</a></div>
+    <div class="nav-actions">
+      <span class="user-pill" id="userPill" role="status" style="{{ auth()->check() ? 'display:inline-flex' : 'display:none' }}">{{ auth()->user()?->name }}{{ auth()->check() ? ' · ' . ucfirst(auth()->user()->role) : '' }}</span>
+      <div class="lang-toggle" role="group" aria-label="Idioma / Simi">
+        <button type="button" id="btn-es" class="active" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" id="btn-qu" data-lang="qu" aria-pressed="false">QU</button>
+      </div>
+      <a class="btn btn-ghost" href="#Login" id="navLogin" {{ auth()->check() ? 'hidden' : '' }} data-i18n="navLogin">Ingresar</a>
+      <a class="btn btn-ghost" href="#Registro" id="navRegister" {{ auth()->check() ? 'hidden' : '' }} data-i18n="navRegister">Registrarse</a>
+      <button type="button" class="btn btn-ghost" id="btnLogout" {{ auth()->check() ? '' : 'hidden' }} data-i18n="navLogout">Salir</button>
+    </div>
+  </nav>
+</header>
+
+<main id="contenido" class="content-layer">
+
+  <section class="section hero active" id="sec-Inicio" aria-labelledby="h-hero" tabindex="-1">
+    <div class="wrap hero-grid">
+      <div>
+        <h1 id="h-hero" data-i18n="heroTitle">Comercio justo,<br><span class="accent">sin intermediarios.</span></h1>
+        <p class="lede" data-i18n="heroLede">Ayni Hub conecta a productores y tejedoras de Chinchero directamente con compradores y turismo, con ubicación, trazabilidad y pagos por Yape o Plin.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#Catalogo" data-i18n="heroCta1">Ver catálogo</a>
+        </div>
+        <dl class="stat-row">
+          <div class="stat"><dt class="num">180+</dt><dd class="label" style="margin:2px 0 0" data-i18n="stat1">Familias productoras</dd></div>
+          <div class="stat"><dt class="num">0%</dt><dd class="label" style="margin:2px 0 0" data-i18n="stat2">Comisión a intermediarios</dd></div>
+          <div class="stat"><dt class="num">2</dt><dd class="label" style="margin:2px 0 0" data-i18n="stat3">Idiomas: español y quechua</dd></div>
+        </dl>
+      </div>
+      <div class="hero-visual carousel" id="heroCarousel" role="group" aria-roledescription="carrusel" aria-label="Fotos de Chinchero">
+        <img class="carousel-img show" src="{{ asset('images/portada1.jpg') }}" alt="Paisaje andino de Chinchero" width="800" height="800">
+        <img class="carousel-img" src="{{ asset('images/portada2.jpg') }}" alt="Productos de la zona" loading="lazy" width="800" height="800">
+        <img class="carousel-img" src="{{ asset('images/portada3.jpg') }}" alt="Comunidad de Chinchero" loading="lazy" width="800" height="800">
+        <div class="carousel-dots">
+          <button type="button" class="dot active" data-slide="0" aria-label="Foto 1"></button>
+          <button type="button" class="dot" data-slide="1" aria-label="Foto 2"></button>
+          <button type="button" class="dot" data-slide="2" aria-label="Foto 3"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section class="section" id="sec-Entrevista" aria-labelledby="h-ent" tabindex="-1">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="h-ent" data-i18n="entH">Entrevista y paisaje</h2>
+        <p data-i18n="entP">Registro de la visita de campo a la comunidad: la conversación con una productora local y el paisaje de Chinchero.</p>
+      </div>
+      <article class="featured-interview">
+        <figure style="margin:0">
+          <img src="{{ asset('images/entrevista-genoveva.jpg') }}" alt="Doña Genoveva, agricultora de 47 años, durante la entrevista" loading="lazy">
+          <figcaption class="foto-pie">Doña Genoveva, 47 años, agricultora</figcaption>
+        </figure>
+        <div class="txt">
+          <h3>Entrevista a Doña Genoveva</h3>
+          <p>Doña Genoveva tiene 47 años y trabaja en el campo sembrando maíz, papa y habas junto a su esposo, sus hijos y sus papás, ayudándose entre todos. Ella contó que la mayor parte de lo que cosechan lo guardan para comer en casa y solo venden lo que les sobra en las ferias del pueblo. Prefiere no venderles a los revendedores porque le pagan muy poco y no le alcanza para recuperar lo que gastó trabajando la tierra, así que para ganar un poco más ella misma prepara y vende tamales de maíz.</p>
+          <p>También explicó lo difícil que es llevar sus sacos a la ciudad, ya que en los buses a veces no la quieren llevar o le cobran mucho por la carga. Sugiere que exista un medio de transporte exclusivo para productores y un mercado netamente para los agricultores, porque siente que ellos hacen todo el trabajo duro pero son a los que menos les pagan.</p>
+          <p>También mencionó lo importante que sería que exista una página o aplicación donde los agricultores puedan publicar sus productos y venderlos directamente a las personas, sin depender tanto de los revendedores. Por ejemplo, podríamos colocar qué productos tenemos, cuánto cuesta, cuánto tenemos disponible y dónde pueden recogerlos o cómo podrían recibirlos. También sería bueno que la aplicación nos permita mostrar de dónde vienen nuestros productos, porque nosotros mismos los cultivamos y sabemos todo el trabajo que hay detrás de cada cosecha.</p>
+          <aside class="entrevistadores" aria-label="Autores de la entrevista">
+            <strong>Entrevistada por:</strong>
+            <ul><li>Alex Guillermo Suma Ugarte</li><li>Glen Ccallo Yupanqui</li></ul>
+          </aside>
+        </div>
+      </article>
+      <div class="fotos-visita">
+        <figure><img src="{{ asset('images/entrevista-grupo.jpg') }}" alt="El equipo conversando con Doña Genoveva y otras agricultoras frente a una construcción en el campo" loading="lazy"><figcaption class="foto-pie">El equipo durante la visita de campo</figcaption></figure>
+        <figure><img class="camino" src="{{ asset('images/entrevista-camino.jpg') }}" alt="Camino de tierra entre chacras y casas de adobe de la comunidad" loading="lazy"><figcaption class="foto-pie">Camino hacia las chacras de la comunidad</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-ComoFunciona" aria-labelledby="h-flow" tabindex="-1">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="h-flow" data-i18n="flowH">Cómo funciona</h2>
+        <p data-i18n="flowP">De la chacra al comprador, en tres pasos, sin perder el control del precio.</p>
+      </div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <h3 data-i18n="flow1T">Producción</h3>
+          <p data-i18n="flow1P">La familia cosecha o teje, y entrega al punto de acopio de su comunidad.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <h3 data-i18n="flow2T">Acopio con trazabilidad</h3>
+          <p data-i18n="flow2P">El gestor comunitario registra el producto, la foto, la ubicación y el precio justo, con un código de origen.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <h3 data-i18n="flow3T">Venta directa</h3>
+          <p data-i18n="flow3P">Se vende en la feria dominical, por catálogo digital, o en restaurantes aliados de la ruta turística, con pago por Yape o Plin.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-Catalogo" aria-labelledby="h-cat" tabindex="-1">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="h-cat" data-i18n="catH">Catálogo destacado</h2>
+        <p data-i18n="catP">Una muestra de lo que ofrecen las familias de Chinchero esta semana.</p>
+      </div>
+      <div class="cat-tabs" role="group" aria-label="Filtrar por categoría">
+        <button type="button" class="cat-tab" data-cat="todos" aria-pressed="true" data-i18n="catTab0">Todos</button>
+        <button type="button" class="cat-tab" data-cat="agricola" aria-pressed="false" data-i18n="catTab1">Agrícola</button>
+        <button type="button" class="cat-tab" data-cat="artesanal" aria-pressed="false" data-i18n="catTab2">Artesanal</button>
+        <button type="button" class="cat-tab" id="btnNuevoProducto" style="margin-left:auto" data-i18n="catAddBtn">+ Agregar producto</button>
+      </div>
+      <form id="formProducto" class="add-form" hidden novalidate aria-labelledby="fpTitulo">
+        <h3 id="fpTitulo" data-i18n="addFormTitle">Agregar producto (para productores)</h3>
+        <input type="hidden" id="fpId">
+        <div class="field-row">
+          <div class="field"><label for="fpNombre" data-i18n="fpNombreL">Nombre del producto</label>
+          <input id="fpNombre" name="fpNombre" type="text"   aria-describedby="fpNombre-error"><span class="field-error" id="fpNombre-error" aria-live="polite"></span></div>
+          <div class="field"><label for="fpCat" data-i18n="fpCatL">Categoría</label>
+            <select id="fpCat" name="fpCat"><option value="agricola" data-i18n="catTab1">Agrícola</option><option value="artesanal" data-i18n="catTab2">Artesanal</option></select></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="fpProductor" data-i18n="fpProductorL">Productor o asociación</label>
+          <input id="fpProductor" name="fpProductor" type="text"   aria-describedby="fpProductor-error"><span class="field-error" id="fpProductor-error" aria-live="polite"></span></div>
+          <div class="field"><label for="fpPrecio" data-i18n="fpPrecioL">Precio (S/)</label>
+          <input id="fpPrecio" name="fpPrecio" type="number"  min="0.1" step="0.01" inputmode="decimal" aria-describedby="fpPrecio-error"><span class="field-error" id="fpPrecio-error" aria-live="polite"></span></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="fpUnidad" data-i18n="fpUnidadL">Unidad de venta</label>
+            <select id="fpUnidad" name="fpUnidad"><option value="kilo">Kilo</option><option value="unidad">Unidad</option><option value="arroba">Arroba</option></select></div>
+          <div class="field"><label for="fpUbicacion" data-i18n="fpUbicacionL">Ubicación / puesto</label>
+          <input id="fpUbicacion" name="fpUbicacion" type="text"   aria-describedby="fpUbicacion-error"><span class="field-error" id="fpUbicacion-error" aria-live="polite"></span></div>
+        </div>
+        <div class="field-row full"><div class="field"><label for="fpDesc" data-i18n="fpDescL">Descripción (opcional)</label>
+          <textarea id="fpDesc" rows="2" maxlength="300"></textarea></div></div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" data-i18n="fpGuardar">Guardar producto</button>
+          <button type="button" class="btn btn-ghost" id="btnCancelarProducto" data-i18n="cancelar">Cancelar</button>
+        </div>
+      </form>
+      <div class="cat-grid" id="catGrid" aria-live="polite">
+@foreach($products as $product)
+<article class="prod-card show" data-product-id="{{ $product->id }}" data-category="{{ $product->category }}">
+ <div class="prod-img-wrap"><img src="{{ $product->image ? asset($product->image) : asset('images/papa1.jpg') }}" alt="{{ $product->name }}" loading="lazy"></div>
+ <h3>{{ $product->name }}</h3><p class="who">{{ $product->producer_name }}</p><p class="loc">📍 {{ $product->location }}</p>
+ <p class="price">S/ {{ number_format($product->price,2) }} / {{ $product->unit }}</p>
+ @if(auth()->check() && (auth()->user()->role === 'gestor' || (auth()->user()->role === 'productor' && auth()->id() === $product->user_id)))
+ <div class="card-actions"><button class="btn btn-ghost btn-small js-edit" data-id="{{ $product->id }}" type="button">Editar</button><button class="btn btn-ghost btn-small btn-danger js-delete" data-id="{{ $product->id }}" type="button">Eliminar</button></div>
+ @endif
+</article>
+@endforeach
+</div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-Panel" aria-labelledby="h-panel" tabindex="-1">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="h-panel">Panel</h2>
+        <p id="panelSub"></p>
+      </div>
+      <div class="panel-stats" id="panelStats" aria-live="polite"></div>
+      <div class="dash-grid" id="dashCharts" aria-label="Gráficos del dashboard"></div>
+      <h3 class="dash-title" id="dashTableTitle" data-i18n="pTabPedidos">Pedidos</h3>
+      <div class="panel-bar">
+        <div class="cat-tabs" role="group" aria-label="Secciones del panel" style="margin:0">
+          <button type="button" class="cat-tab" data-ptab="pedidos" aria-pressed="true" data-i18n="pTabPedidos">Pedidos</button>
+          <button type="button" class="cat-tab" data-ptab="usuarios" id="tabUsuarios" aria-pressed="false" hidden data-i18n="pTabUsuarios">Usuarios</button>
+        </div>
+        <select id="orderFilter" aria-label="Filtrar pedidos por estado">
+          <option value="" data-i18n="pAllStates">Todos los estados</option>
+          <option value="pendiente" data-i18n="st_pendiente">Pendiente</option><option value="confirmado" data-i18n="st_confirmado">Confirmado</option>
+          <option value="enviado" data-i18n="st_enviado">Enviado</option><option value="entregado" data-i18n="st_entregado">Entregado</option><option value="cancelado" data-i18n="st_cancelado">Cancelado</option>
+        </select>
+        <a class="btn btn-ghost btn-small" href="#Catalogo" id="linkProductos" hidden data-i18n="pManageProducts">Gestionar productos</a>
+      </div>
+      <div class="table-wrap" id="panelTable" aria-live="polite"></div>
+    </div>
+  </section>
+
+        <section class="section" id="sec-Login" aria-labelledby="h-login" tabindex="-1">
+    <div class="wrap" style="max-width:420px;">
+      <div class="section-head" style="margin-bottom:24px;"><h2 id="h-login" data-i18n="loginTitle">Iniciar sesión</h2></div>
+      <form class="form-card" id="formLogin" novalidate>
+        <fieldset class="role-toggle" style="padding:0;margin:0" aria-label="Rol">
+          <button type="button" class="role-btn active" data-role="comprador" data-role-group="login" aria-pressed="true" data-i18n="rolComprador">Comprador</button>
+          <button type="button" class="role-btn" data-role="productor" data-role-group="login" aria-pressed="false" data-i18n="rolProductor">Productor</button>
+          <button type="button" class="role-btn" data-role="gestor" data-role-group="login" aria-pressed="false" data-i18n="rolGestor">Gestor</button>
+        </fieldset>
+        <div class="field"><label for="loginUser" data-i18n="loginUserL">Correo o celular</label>
+          <input id="loginUser" name="loginUser" type="text"  autocomplete="username" aria-describedby="loginUser-error"><span class="field-error" id="loginUser-error" aria-live="polite"></span></div>
+        <div class="field"><label for="loginPass" data-i18n="loginPassL">Contraseña</label>
+          <input id="loginPass" name="loginPass" type="password"  autocomplete="current-password" aria-describedby="loginPass-error"><span class="field-error" id="loginPass-error" aria-live="polite"></span></div>
+        <button type="submit" class="btn btn-primary" style="justify-content:center;" data-i18n="loginBtn">Ingresar</button>
+        <p class="swap-link"><a href="#Registro" data-i18n="loginSwap">¿No tienes cuenta? Regístrate</a></p>
+        <p class="modal-note" data-i18n="loginNote">Tus datos se almacenan de forma segura en la base de datos del sistema.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="section" id="sec-Registro" aria-labelledby="h-reg" tabindex="-1">
+    <div class="wrap" style="max-width:420px;">
+      <div class="section-head" style="margin-bottom:24px;"><h2 id="h-reg" data-i18n="regTitle">Crear cuenta</h2></div>
+      <form class="form-card" id="formRegistro" novalidate>
+        <fieldset class="role-toggle" style="padding:0;margin:0" aria-label="Rol">
+          <button type="button" class="role-btn active" data-role="comprador" data-role-group="reg" aria-pressed="true" data-i18n="rolComprador">Comprador</button>
+          <button type="button" class="role-btn" data-role="productor" data-role-group="reg" aria-pressed="false" data-i18n="rolProductor">Productor</button>
+        </fieldset>
+        <div class="field"><label for="regNombre" data-i18n="regNombreL">Nombre completo</label>
+          <input id="regNombre" name="regNombre" type="text"  autocomplete="name" aria-describedby="regNombre-error"><span class="field-error" id="regNombre-error" aria-live="polite"></span></div>
+        <div class="field"><label for="regContacto" data-i18n="regContactoL">Correo o celular</label>
+          <input id="regContacto" name="regContacto" type="text"  autocomplete="username" aria-describedby="regContacto-error"><span class="field-error" id="regContacto-error" aria-live="polite"></span></div>
+        <div id="regUbicWrap" hidden><div class="field"><label for="regUbicacion" data-i18n="regUbicL">Comunidad / ubicación habitual de venta</label>
+          <input id="regUbicacion" name="regUbicacion" type="text"   aria-describedby="regUbicacion-error"><span class="field-error" id="regUbicacion-error" aria-live="polite"></span></div></div>
+        <div class="field"><label for="regPass" data-i18n="regPassL">Contraseña (mín. 8, con letras y números)</label>
+          <input id="regPass" name="regPass" type="password"  autocomplete="new-password" aria-describedby="regPass-error"><span class="field-error" id="regPass-error" aria-live="polite"></span></div>
+        <button type="submit" class="btn btn-primary" style="justify-content:center;" data-i18n="regBtn">Crear cuenta</button>
+        <p class="modal-note" data-i18n="loginNote">Tus datos se almacenan de forma segura en la base de datos del sistema.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap"><p data-i18n="footer">Proyecto de emprendimiento social — Chinchero, Urubamba, Cusco.</p></div>
+</footer>
+
+<!-- Modal: ficha de producto -->
+<div class="modal-overlay info-modal" id="infoOverlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="infoNombre">
+    <div class="modal-head"><h2 id="infoNombre" style="font-size:15px">Producto</h2><button type="button" data-close-modal aria-label="Cerrar">✕</button></div>
+    <div class="modal-body">
+      <img class="info-modal-img" id="infoImg" alt="">
+      <p id="infoDesc" style="font-size:13.5px; color:var(--text-1); line-height:1.6;"></p>
+      <div id="infoPrecios" class="price-lines"></div>
+      <p class="price-note" data-i18n="priceNote">Precios referenciales.</p>
+    </div>
+  </div>
+</div>
+
+<div class="toast-global" id="toastGlobal" role="status" aria-live="polite"></div>
+
+
+@php $ayniUser = auth()->check() ? auth()->user()->toPublicArray() : null; @endphp
+<script>window.AYNI_USER = {!! json_encode($ayniUser, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!};</script>
+<script src="{{ asset('js/idiomas.js') }}"></script><script src="{{ asset('js/idiomasExtra.js') }}"></script><script src="{{ asset('js/idiomasPanel.js') }}"></script><script src="{{ asset('js/aynihub.js') }}"></script>
+</body>
+</html>
